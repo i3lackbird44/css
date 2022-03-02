@@ -18,12 +18,26 @@
 <body>
     <div class="container">
         <button class="btn btn-primary">show</button>
-        <button class="btn btn-success">hide</button>
-        <button class="btn btn-secondary">Add loading</button>
+        <button class="btn btn-success">hide content</button>
+        <button class="btn btn-secondary spinner">Add loading spinner</button>
+        <button class="btn btn-secondary vertical">Add loading vertical</button>
+        <button class="btn btn-dark">Remove loading</button>
         <div class="content-box">TEST</div>
+        
         <div class="template">
-            <div class="overlay">
-                <div class="loader"></div>
+            <div class="loader-spinner">
+                <div class="overlay">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <div class="loader-vertical">
+                <div class="overlay">
+                    <div class="loader-vertical">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -31,22 +45,36 @@
 </html>
 <script>
     $(function(){
-        var temp_load = $('.template').html();
+        var temp_load_spinner = $('.template .loader-spinner').html();
+        var temp_load_vertical = $('.template .loader-vertical').html();
         $('.btn.btn-primary').click(function(){
-            $('.content-box').removeClass('hide');
+            $('.content-box').removeClass('hide-popup');
             $('.content-box').show();
-            $('.content-box').addClass('show');
+            $('.content-box').addClass('show-popup');
         });
         $('.btn.btn-success').click(function(){
-            $('.content-box').removeClass('show');
-            $('.content-box').addClass('hide');
-            $('.content-box .overlay').hide();
+            $('.content-box').removeClass('show-popup');
+            $('.content-box').addClass('hide-popup');
+            $('.content-box .overlay').remove();
             setTimeout(() => {
                 $('.content-box').hide();
             }, 800);
         });
-        $('.btn.btn-secondary').click(function(){
-            $('.content-box').append(temp_load);
+        $('.btn.btn-secondary.spinner').click(function(){
+            $('.content-box').append(temp_load_spinner);
+            $('.content-box .overlay').show();
+            $('.content-box .overlay').addClass('show');
+        });
+        $('.btn.btn-secondary.vertical').click(function(){
+            $('.content-box').append(temp_load_vertical);
+            $('.content-box .overlay').show();
+            $('.content-box .overlay').addClass('show');
+        });
+        $('.btn.btn-dark').click(function(){
+            $('.content-box .overlay').addClass('hide');
+            setTimeout(() => {
+                $('.content-box .overlay').remove();
+            }, 800);
         });
     });
 </script>

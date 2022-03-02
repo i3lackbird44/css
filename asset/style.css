@@ -12,10 +12,13 @@
     transform: translate(-50%, -50%);
 }
 
+
+/* overlay */
 .template{
     display: none;
 }
 .overlay{
+    display: none;
     width: 100%;
     height: 100%;
     left: 0;
@@ -24,6 +27,8 @@
     background-color: rgba(0,0,0,0.5);
     z-index: 2;
 }
+
+/* loading spinner */
 .loader {
     position: absolute;
     left: 30%;
@@ -49,11 +54,78 @@
     }
 }
 
+/* loading vertical */
+.loader-vertical{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%,-50%);
+}
+.loader-vertical div{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: black;
+}
+.loader-vertical div:nth-child(1){
+    animation: move-vertical 1s ease 0s infinite alternate;
+}
+.loader-vertical div:nth-child(2){
+    left: 40px;
+    animation: move-vertical 1s ease 0.5s infinite alternate;
+}
+.loader-vertical div:nth-child(3){
+    left: 80px;
+    animation: move-vertical 1s ease 1s infinite alternate;
+
+}
+@keyframes move-vertical {
+    0%{
+        top: 0px;
+    }
+    100%{
+        top: -30px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* show */
 .show{
     animation-name: show;
     animation-duration: var(--animation-time);
+    /* animation-direction: alternate; */
 }
 @keyframes show{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.hide{
+    animation-name: hide;
+    animation-duration: var(--animation-time);
+}
+@keyframes hide{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        /* width: 0;
+        height: 0; */
+    }
+}
+
+/* show popup */
+.show-popup{
+    animation-name: show-popup;
+    animation-duration: var(--animation-time);
+}
+@keyframes show-popup{
     0%{
         opacity: 0;
         width: 0;
@@ -66,12 +138,11 @@
         opacity: 1;
     }
 }
-
-.hide{
-    animation-name: hide;
+.hide-popup{
+    animation-name: hide-popup;
     animation-duration: var(--animation-time);
 }
-@keyframes hide {
+@keyframes hide-popup{
     0%{
         opacity: 1;
     }
